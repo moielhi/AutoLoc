@@ -1,6 +1,8 @@
-// CategorieVehicule.java
 package tn.esprit.autoloc.domain;
 
 public enum CategorieVehicule {
-    CITADINE, BERLINE, SUV, UTILITAIRE, LUXE, CABRIOLET
+    CITADINE,
+    BERLINE,
+    SUV,
+    UTILITAIRE
 }
