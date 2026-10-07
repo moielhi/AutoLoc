@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.math.BigDecimal;
+import java.util.Set;
 
 @Entity
 @Table(name = "vehicule")
@@ -11,6 +12,7 @@ import java.math.BigDecimal;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class Vehicule {
 
     @Id
@@ -36,4 +38,13 @@ public class Vehicule {
     @Enumerated(EnumType.STRING)
     @Column(nullable = false, length = 20)
     private StatutVehicule statut;
+
+    @ManyToOne
+    private Agence agence;
+
+    @OneToMany(mappedBy = "vehicule", cascade = CascadeType.REMOVE)
+    private Set<Reservation> reservations;
+
+    @ManyToMany
+    private Set<Equipement> equipements;
 }
