@@ -31,6 +31,8 @@ public class AgenceTests {
     private AgenceRepositoryMock basicAgenceRepository;
     @Autowired
     private IAgenceRepository fullAgenceRepository;
+    @Autowired
+    private tn.esprit.autoloc.service.IAgenceService agenceService;
 
 
     private void addAgence(CrudRepository<Agence, Long> repository) {
@@ -131,7 +133,21 @@ public class AgenceTests {
         }
         fail(sb.toString());
     }
+
+    @Test
+    public void createAgence() {
+        Agence agence = Agence.builder()
+                .nom("Agence Manar")
+                .adresse("15 Avenue Habib Bourguiba")
+                .telephone("71234567")
+                .ville("Tunis")
+                .build();
+        Agence created = agenceService.create(agence);
+        org.junit.Assert.assertNotNull(created);
+        org.junit.Assert.assertNotNull(created.getIdAgence());
+    }
 }
 
+@org.springframework.stereotype.Repository
 interface AgenceRepositoryMock extends CrudRepository<Agence, Long> {
 }
