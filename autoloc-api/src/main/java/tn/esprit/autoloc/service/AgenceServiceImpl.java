@@ -1,5 +1,7 @@
 package tn.esprit.autoloc.service;
 
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -20,11 +22,17 @@ public class AgenceServiceImpl extends GenericServiceImpl<Agence, Long> implemen
 
     private final VehiculeServiceImpl vehiculeService;
     private final EmployeServiceImpl employeService;
+    private final IAgenceService agenceServiceProxy;
 
-    public AgenceServiceImpl(IAgenceRepository repository, VehiculeServiceImpl vehiculeService, EmployeServiceImpl employeService) {
+    public AgenceServiceImpl(
+            IAgenceRepository repository,
+            VehiculeServiceImpl vehiculeService,
+            EmployeServiceImpl employeService,
+            @Lazy @Qualifier("agenceServiceImpl") IAgenceService agenceServiceProxy) {
         super(repository);
         this.vehiculeService = vehiculeService;
         this.employeService = employeService;
+        this.agenceServiceProxy = agenceServiceProxy;
     }
 
     @Override
@@ -76,7 +84,7 @@ public class AgenceServiceImpl extends GenericServiceImpl<Agence, Long> implemen
 
     private Agence doUpdateAvecEmployes(Long idAgence, Agence agence, List<Employe> employes) {
         // 1. Mettre à jour d'abord l'agence
-        Agence updatedAgence = this.update(idAgence, agence);
+        Agence updatedAgence = agenceServiceProxy.update(idAgence, agence);
 
         // 2. Utiliser le service des employés pour insérer les employés
         if (employes != null && !employes.isEmpty()) {

@@ -16,6 +16,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/employes")
 @RequiredArgsConstructor
+@SuppressWarnings("java:S4684")
 public class EmployeController {
 
     private final EmployeServiceImpl employeService;

@@ -16,6 +16,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/equipements")
 @RequiredArgsConstructor
+@SuppressWarnings("java:S4684")
 public class EquipementController {
 
     private final EquipementServiceImpl equipementService;

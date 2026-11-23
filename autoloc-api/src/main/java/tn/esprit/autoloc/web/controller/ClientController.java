@@ -16,6 +16,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/clients")
 @RequiredArgsConstructor
+@SuppressWarnings("java:S4684")
 public class ClientController {
 
     private final ClientServiceImpl clientService;

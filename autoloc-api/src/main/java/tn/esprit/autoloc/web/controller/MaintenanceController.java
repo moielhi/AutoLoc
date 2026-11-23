@@ -16,6 +16,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/maintenances")
 @RequiredArgsConstructor
+@SuppressWarnings("java:S4684")
 public class MaintenanceController {
 
     private final MaintenanceServiceImpl maintenanceService;

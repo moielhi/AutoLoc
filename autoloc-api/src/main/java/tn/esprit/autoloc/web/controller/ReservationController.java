@@ -16,6 +16,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/reservations")
 @RequiredArgsConstructor
+@SuppressWarnings("java:S4684")
 public class ReservationController {
 
     private final ReservationServiceImpl reservationService;

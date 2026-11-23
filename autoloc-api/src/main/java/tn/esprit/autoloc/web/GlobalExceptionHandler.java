@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import tn.esprit.autoloc.exception.ResourceNotFoundException;
 
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 
 @RestControllerAdvice
 public class GlobalExceptionHandler {
@@ -16,7 +17,7 @@ public class GlobalExceptionHandler {
         ErrorResponse errorResponse = new ErrorResponse(
                 HttpStatus.NOT_FOUND.value(),
                 ex.getMessage(),
-                LocalDateTime.now()
+                LocalDateTime.now(ZoneId.systemDefault())
         );
         return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
     }
@@ -26,7 +27,7 @@ public class GlobalExceptionHandler {
         ErrorResponse errorResponse = new ErrorResponse(
                 HttpStatus.BAD_REQUEST.value(),
                 ex.getMessage(),
-                LocalDateTime.now()
+                LocalDateTime.now(ZoneId.systemDefault())
         );
         return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
     }

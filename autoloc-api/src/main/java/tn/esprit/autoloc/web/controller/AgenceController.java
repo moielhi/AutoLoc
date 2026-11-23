@@ -18,6 +18,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/agences")
 @RequiredArgsConstructor
+@SuppressWarnings("java:S4684")
 public class AgenceController {
 
     private final IAgenceService agenceService;

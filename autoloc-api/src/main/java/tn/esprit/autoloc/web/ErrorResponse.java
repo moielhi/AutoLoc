@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 
 @Getter
 @Setter
@@ -23,6 +24,6 @@ public class ErrorResponse {
     public ErrorResponse(int statut, String message) {
         this.statut = statut;
         this.message = message;
-        this.horodatage = LocalDateTime.now();
+        this.horodatage = LocalDateTime.now(ZoneId.systemDefault());
     }
 }

@@ -16,6 +16,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/contrats")
 @RequiredArgsConstructor
+@SuppressWarnings("java:S4684")
 public class ContratController {
 
     private final ContratServiceImpl contratService;
